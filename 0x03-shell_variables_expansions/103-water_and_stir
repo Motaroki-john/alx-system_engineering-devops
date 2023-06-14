@@ -1,0 +1,19 @@
+#!/bin/bash
+
+# Function to convert a number from one base to another
+convert_base() {
+    local number=$1
+    local from_base=$2
+    local to_base=$3
+
+    echo "obase=$to_base; ibase=$from_base; $number" | bc
+}
+
+# Add the two numbers in base water and stir
+result=$(echo "$(convert_base "$WATER" water 10) + $(convert_base "$STIR" stir 10)" | bc)
+
+# Convert the result to base bestchol
+bestchol_result=$(convert_base "$result" 10 bestchol)
+
+echo "$bestchol_result"
+
